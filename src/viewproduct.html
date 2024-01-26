@@ -98,8 +98,25 @@
                     <p class="search-p">Search: <input type="text" id="search-bar" name="search-bar" placeholder="Search" >
                     <i class="bi bi-search"></i> </p>
                 </div>
+
                 
-                <table>
+                <table id="productTable">
+                  <thead>
+                    <tr>
+                      <th> Product Code </th>
+                      <th> Product Name</th>
+                      <th> Supplier Name</th>
+                      <th> ProductType</th>
+                      <th> Quantiy</th>
+                      <th> Price</th>
+                      <th> Property </th>
+                      <th> Action </th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+                
+                <!-- <table>
                     <thead>
                         <tr>
                             <th> Product Code </th>
@@ -149,11 +166,12 @@
                         <td></td>
                       </tr>
                     </tbody>
-                </table>
+                </table> -->
             </section>
         </main>
     </div>
 </div>
 <script src="javascript/viewproduct.js"></script> 
+<script src="Fetch/productfetch2.js"></script>
 </body>
 </html>
