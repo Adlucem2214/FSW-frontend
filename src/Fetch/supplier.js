@@ -19,11 +19,18 @@ formE1.addEventListener('submit', (event) => {
     },
     body: JSON.stringify(data)
   })
-    .then(response => response.json())
+    .then(response =>{
+      response.json()
+      if (response.ok) {
+        alert('Supplier added successfully!');
+      }else{
+        alert('There was a problem adding Supplier')
+      }
+    } )
     .then(data => {
       // Handle the response from the API
       console.log(data);
-    })
+      })
     .catch(error => console.log(error));
 });
 

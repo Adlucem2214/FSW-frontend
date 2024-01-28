@@ -96,47 +96,25 @@
                     <p class="search-p">Search: <input type="text" id="search-bar" name="search-bar" placeholder="Search" >
                     <i class="bi bi-search"></i> </p>
                 </div>
-                
-                <table>
-                    <thead>
-                        <tr>
-                            <th> Product ID </th>
-                            <th> Product Name</th>
-                            <th> Quality</th>
-                            <th> Property  </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                      <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                      </tr>
-                    </tbody>
+
+                <table id="lowstockTable">
+                  <thead>
+                    <tr>
+                        <th> Product ID </th>
+                        <th> Product Name</th>
+                        <th> Quantity</th>
+                        <th> Product-Type</th>
+                        <th> Property  </th>
+                        <th> Threshold  </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
                 </table>
             </section>
         </main>
     </div>
 </div>
 <script src="javascript/lowstock.js"></script> 
+<script src="Fetch/lowstockfetch.js"></script>
 </body>
 </html>
