@@ -12,7 +12,6 @@ fetch('http://localhost:8000/stock/sales/', {
     const tableBody = document.querySelector('#sellTable tbody');
 
     data.forEach(sale => {
-
       const row = document.createElement('tr');
 
       const codeCell = document.createElement('td');
