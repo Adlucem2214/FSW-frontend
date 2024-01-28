@@ -24,12 +24,12 @@ fetch('http://localhost:8000/stock/products/', {
       row.appendChild(nameCell);
 
       const supplierCell = document.createElement('td');
-      supplierCell.textContent = product.supplier.name;
+      supplierCell.textContent = product.supplier_str;
       row.appendChild(supplierCell);
 
       
       const ProductTypeCell = document.createElement('td');
-      ProductTypeCell.textContent = product.product_type.name;
+      ProductTypeCell.textContent = product.product_type_str;
       row.appendChild(ProductTypeCell);
 
       
@@ -44,7 +44,7 @@ fetch('http://localhost:8000/stock/products/', {
 
       
       const propertyCell = document.createElement('td');
-      propertyCell.textContent = product.property.brand + "=>" +  product.property.size;
+      propertyCell.textContent = product.property_str;
       row.appendChild(propertyCell);
 
       const actionsCell = document.createElement('td');

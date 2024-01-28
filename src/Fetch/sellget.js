@@ -53,5 +53,5 @@ fetch('http://localhost:8000/stock/sales/', {
     });
   })
   .catch(error => {
-    console.error('Error fetching supplier data:', error);
+    console.error('Error fetching sell data:', error);
   });
