@@ -141,7 +141,14 @@ fetch('http://localhost:8000/stock/properties/', {
       },
       body: JSON.stringify(data)
     })
-      .then(response => response.json())
+      .then(response => {
+        response.json()
+        if (response.ok) {
+          alert('Product added successfully!');
+        }else{
+          alert('There was a problem adding Product')
+        }
+      })
       .then(data => {
         console.log(data);
       })
