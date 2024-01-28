@@ -24,7 +24,7 @@ formE1.addEventListener('submit', (event) => {
       
       // location.href = "merged-frontend-stock/"
       
-      window.location.href = '../login.html';
+      window.location.href = '../src/login.html';
       return response.json(); // Parse the response JSON
     }else {
         // Handle login error
