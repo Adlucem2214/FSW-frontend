@@ -9,7 +9,7 @@ fetch('http://localhost:8000/stock/sales/', {
 })
   .then(response => response.json())
   .then(data => {
-    const tableBody = document.querySelector('#sellTable tbody');
+    const tableBody = document.querySelector('#saleTable tbody');
 
     data.forEach(sale => {
       const row = document.createElement('tr');
@@ -19,7 +19,7 @@ fetch('http://localhost:8000/stock/sales/', {
       row.appendChild(codeCell);
 
       const productCell  = document.createElement('td');
-      productCell.textContent = sale.product;
+      productCell.textContent = sale.product_str;
       row.appendChild(productCell);
 
       const priceCell = document.createElement('td');
