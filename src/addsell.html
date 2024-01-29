@@ -6,7 +6,9 @@
     <title>Add Sell</title>
     <link rel="stylesheet" href="CSS/addsell.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="CSS/buttton.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 
@@ -17,7 +19,7 @@
           <li><a href="addproduct.html">Inventory</a></li>
           <li><a href="login.html">Login</a></li>
         </ul>
-         <li><a href="#" class="link-btn">Logout</a></li>
+         <li><a href="#" class="link-btn" id="logoutBtn">Logout</a></li>
     </header>
 
     <div class="page">
@@ -106,7 +108,7 @@
                     <label for="Date">Date:</label>
                     <input type="text" id="Date" name="Date" required>
                 </div> --> 
-                <button type="submit">Save</button>
+                <button type="submit" class="save-buttton">Save</button>
             </form>
         </div>
     </section>
@@ -115,5 +117,6 @@
 </div>
 <script src="javascript/addsell.js"></script> 
 <script src="Fetch/sellfetch.js"></script>
+<script src="Fetch/logout.js"></script>
 </body>
 </html>

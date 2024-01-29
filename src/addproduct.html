@@ -6,6 +6,7 @@
     <title>Add Supplier</title>
     <link rel="stylesheet" href="CSS/addproduct.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="CSS/buttton.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -17,7 +18,7 @@
           <li><a href="addproduct.html">Inventory</a></li>
           <li><a href="login.html">Login</a></li>
         </ul>
-         <li><a href="#" class="link-btn">Logout</a></li>
+         <li><a href="#" class="link-btn" id="logoutBtn">Logout</a></li>
     </header>
 
     <div class="page">
@@ -142,23 +143,11 @@
               <label for="property-name">Property Name:</label>
               <select id="property-name" name="property" required>
               </select>
-              <button id="add-button" onclick="showPopup()">+</button>
+              <a href="property.html" class="add-property">add</a>
             </div>
                 
-                <div id="popup" class="popup">
-                  <div class="popup-content">
-                    <span class="close" onclick="closePopup()">&times;</span>
-                    <div class="popup-item">
-                      <h1>Add Property</h1>
-                      <input type="text" id="input1" placeholder="Brand">
-                      <input type="text" id="input2" placeholder="Size">
-                      <button type="submit">Submit</button>
-                    </div>
-                  </div>
-                </div>
-                
 
-                <button type="submit">Save</button>
+                <button type="submit" class="save-buttton">Save</button>
             </form>
         </div>
     </section>
@@ -167,5 +156,7 @@
 </div>
 <!-- <script src="javascript/addproduct.js"></script> -->
 <script src="Fetch/productfetch.js"></script>
+<script src="Fetch/logout.js"></script>
 </body>
 </html>
+

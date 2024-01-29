@@ -99,6 +99,8 @@ header a {
   pointer-events: auto;
   margin-left: 25px;
   touch-action: none; 
+  color: #fff;
+  border: 2px var(--button-color);
 }
 .icon-bar {
   display: block;
@@ -247,7 +249,7 @@ header a {
 
 .add-sell button {
     background-color: #53CA12;
-    color: black;
+    color: #fff;
     width: 100px;
     border-radius: 10px;
     font-weight: bold;
@@ -255,6 +257,8 @@ header a {
     border: none;
     outline: none;
     align-self: flex-end;
+    border: 2px solid var(--button-color);
+    font-size: medium;
 }
 .add-sell h2{
   margin-bottom: 30px;
