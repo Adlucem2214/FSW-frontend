@@ -1,6 +1,7 @@
 const token = localStorage.getItem('token');  
 const nameValue = document.getElementById('name')
 const detailValue = document.getElementById('c')
+const formE1 = document.getElementById('form');
 
 
 fetch('http://localhost:8000/stock/suppliers/', {
@@ -30,10 +31,17 @@ fetch('http://localhost:8000/stock/suppliers/', {
       row.appendChild(contactCell);
 
       const actionsCell = document.createElement('td');
-      const updateLink = document.createElement('a');
-      updateLink.href = `/update-supplier/${supplier.code}`; // Replace with the appropriate URL for update
+
+      const updateLink = document.createElement('button');
+      
       updateLink.textContent = 'Update';
       actionsCell.appendChild(updateLink);
+
+      updateLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        populate(supplier.id, supplier.name, supplier.contact_info, row); // Call the deleteSupplier function passing the supplier ID and row element
+       });
+        
 
       const deleteLink = document.createElement('button');
       // deleteLink.href = `http://localhost:8000/stock/suppliers/${supplier.id}`; // Replace with the appropriate URL for delete
@@ -78,4 +86,55 @@ fetch('http://localhost:8000/stock/suppliers/', {
       .catch(error => {
         console.error('Error deleting supplier:', error);
       });
-  }
+}
+
+const suppliercode = document.getElementById('updatecode')
+const suppliername = document.getElementById('updatename')
+const suppliercontact = document.getElementById('updatecontact')
+
+
+function populate(id, name, contact, row) {
+  console.log(id, name, contact);
+
+  suppliercode.value = id;
+  console.log(suppliercode.value)
+  suppliername.value = name;
+  suppliercontact.value = contact;
+}
+
+  formE1.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const id = suppliercode.value;
+    const name = suppliername.value;
+    const contact = suppliercontact.value;
+
+    const data = {
+      name: name,
+      contact_info: contact
+    };
+
+    fetch(`http://localhost:8000/stock/suppliers/${id}/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Token ${token}`,
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        response.json();
+        if (response.ok) {
+          alert('Supplier updated successfully!');
+        } else {
+          alert('There was a problem updating Supplier');
+        }
+      })
+      .then(data => {
+        // Handle the response from the API
+        console.log(data);
+      })
+      .catch(error => console.log(error));
+  });
+
+
