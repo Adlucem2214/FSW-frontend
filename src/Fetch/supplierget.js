@@ -32,8 +32,8 @@ fetch('http://localhost:8000/stock/suppliers/', {
       updateLink.textContent = 'Update';
       actionsCell.appendChild(updateLink);
 
-      const deleteLink = document.createElement('a');
-      deleteLink.href = `http://localhost:8000/stock/suppliers/${supplier.id}`; // Replace with the appropriate URL for delete
+      const deleteLink = document.createElement('button');
+      // deleteLink.href = `http://localhost:8000/stock/suppliers/${supplier.id}`; // Replace with the appropriate URL for delete
       deleteLink.textContent = 'Delete';
       actionsCell.appendChild(deleteLink);
 
@@ -56,7 +56,7 @@ fetch('http://localhost:8000/stock/suppliers/', {
   function deleteSupplier(supplierId, row) {
     const token = localStorage.getItem('token');
   
-    fetch(`http://localhost:8000/stock/suppliers/${supplierId}/`, {
+    fetch(`http://localhost:8000/stock/suppliers/${supplierId}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',
