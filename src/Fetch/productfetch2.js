@@ -88,6 +88,7 @@ fetch('http://localhost:8000/stock/products/', {
           // Delete the row from the table
           row.remove();
         } else {
+          alert('You can not delete this product, Product is related to Sale')
           throw new Error('Failed to delete the supplier.');
         }
       })

@@ -1,4 +1,7 @@
 const token = localStorage.getItem('token');  
+const nameValue = document.getElementById('name')
+const detailValue = document.getElementById('c')
+
 
 fetch('http://localhost:8000/stock/suppliers/', {
   method: 'GET',
@@ -68,7 +71,7 @@ fetch('http://localhost:8000/stock/suppliers/', {
           // Delete the row from the table
           row.remove();
         } else {
-          alert ('Supplier is related to product')
+          alert ('You can not delete this supplier ,Supplier is related to product')
           throw new Error('Failed to delete the supplier.');
         }
       })
