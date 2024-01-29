@@ -53,9 +53,15 @@ fetch('http://localhost:8000/stock/products/', {
       updateLink.textContent = 'Update';
       actionsCell.appendChild(updateLink);
 
-      const deleteLink = document.createElement('a');
-      deleteLink.href = `/delete-supplier/${product.code}`; // Replace with the appropriate URL for delete
+      const deleteLink = document.createElement('button');
+      // deleteLink.href = `http://localhost:8000/stock/products/${product.id}`; // Replace with the appropriate URL for delete
       deleteLink.textContent = 'Delete';
+      actionsCell.appendChild(deleteLink);
+
+      deleteLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        deleteProduct(product.id, row); // Call the deleteSupplier function passing the supplier ID and row element
+      });
       actionsCell.appendChild(deleteLink);
 
       row.appendChild(actionsCell);
@@ -64,8 +70,33 @@ fetch('http://localhost:8000/stock/products/', {
     });
   })
   .catch(error => {
-    console.error('Error fetching supplier data:', error);
+    console.error('Error fetching product data:', error);
   });
+
+  function deleteProduct(productId, row) {
+    const token = localStorage.getItem('token');
+  
+    fetch(`http://localhost:8000/stock/products/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Token ${token}`,
+      }
+    })
+      .then(response => {
+        if (response.ok) {
+          // Delete the row from the table
+          row.remove();
+        } else {
+          throw new Error('Failed to delete the supplier.');
+        }
+      })
+      .catch(error => {
+        console.error('Error deleting supplier:', error);
+      });
+  }
+
+  
 
 
 
