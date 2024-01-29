@@ -48,10 +48,15 @@ fetch('http://localhost:8000/stock/products/', {
       row.appendChild(propertyCell);
 
       const actionsCell = document.createElement('td');
-      const updateLink = document.createElement('a');
-      updateLink.href = `/update-supplier/${product.code}`; // Replace with the appropriate URL for update
+      const updateLink = document.createElement('button');// Replace with the appropriate URL for update
       updateLink.textContent = 'Update';
       actionsCell.appendChild(updateLink);
+
+
+      updateLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        populate(product.id, product.productname, product.supplier, product.product_type, product.quantity, product.price, product.property, threshold, row); // Call the deleteSupplier function passing the supplier ID and row element
+       });
 
       const deleteLink = document.createElement('button');
       // deleteLink.href = `http://localhost:8000/stock/products/${product.id}`; // Replace with the appropriate URL for delete
@@ -98,41 +103,32 @@ fetch('http://localhost:8000/stock/products/', {
   }
 
   
+// const productId = document.getElementById('product-id');
+const productName = document.getElementById('product-name');
+console.log(productName.value)  
+// const supplier = document.getElementById('supplier');
+// console.log(supplier.value)
+// const productType = document.getElementById('product-type');
+// console.log(productType.value)
+const quantity = document.getElementById('quantity');
+console.log(quantity.value)
+const price = document.getElementById('price');
+console.log(price.value)
+// const property = document.getElementById('property');
+// console.log(property.value)
+const threshold = document.getElementById('threshold');
+console.log(threshold.value)
 
-
-
-
-
-
-// const producttype = document.querySelector('.producttype')
-// let output = ''
-
-
-// const renderPosts = (posts) =>{
-//     posts.forEach(post => {
-//         output += `
-//         <div class="form-group" id="producttype">
-//         <label for="sell-code">Product Type:</label>
-//         <select id="sell-code" name="sell-code" required>
-//           <option value="option3">${post.name}</option>
-//         </select>
-//       </div>;`
-//     })
-//     producttype.innerHTML = output;
-// }
-// fetch('http://localhost:8000/stock/producttypes/', {
-//     method: 'GET',
-//     headers:{
-//       'Content-type': 'application/json'
-//     },
-//   })
-//     .then(res => res.json())
-//     .then(data => {renderPosts(data);
-//     })
-//     .catch(error => {
-//       // Handle any errors
-//       console.error('Error:', error);
-//     });
-
+function populate(id, productname, supplier, product_type, quantity, price, property, threshold, row) {
+  // productId.value = id;
+  productName.value = productname;
+  // supplier.value = supplier;
+  // productType.value = product_type;
+  quantity.value = quantity;
+  price.value = price;
+  // property.value = property;
+  threshold.value = threshold;
+  
+}
 
   
