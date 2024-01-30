@@ -243,7 +243,7 @@ fetch('http://localhost:8000/stock/properties/', {
     const threshold = productThreshold.value;
     const supplier = productsupplier.value;
     const productproperty = productpropertyDrop.value;
-    const producttype = producttype.value;
+    const producttype = producttypeDrop.value;
 
     const data = {
       productname: name,
@@ -252,7 +252,7 @@ fetch('http://localhost:8000/stock/properties/', {
       threshold:threshold,
       supplier:supplier,
       product_type:producttype,
-      property: productproperty,
+      property: productproperty
     };
 
     fetch(`http://localhost:8000/stock/products/${id}/`, {
