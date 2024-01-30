@@ -3,10 +3,19 @@ const dropdown = document.getElementById('product-type');
 const supplierDropdown = document.getElementById('Supplier-name');
 const propertyDropdown = document.getElementById('property-name');
 const formE1 = document.getElementById('form');
+let search = '';
+
+const searchInput = document.getElementById('search-bar');
+searchInput.addEventListener('input', (event) => { 
+  search = event.target.value;
+  const tableBody = document.querySelector('#productTable tbody');
+  tableBody.innerHTML = '';
+  fetchData(search);
+})
 
 
-
-fetch('http://localhost:8000/stock/products/', {
+function fetchData(search = '' ) 
+{fetch(`http://localhost:8000/stock/products/?search=${search}`, {
   method: 'GET',
   headers:{
     'Content-type': 'application/json',
@@ -83,6 +92,11 @@ fetch('http://localhost:8000/stock/products/', {
   .catch(error => {
     console.error('Error fetching product data:', error);
   });
+}
+
+fetchData(search);
+
+
 
   function deleteProduct(productId, row) {
     const token = localStorage.getItem('token');
