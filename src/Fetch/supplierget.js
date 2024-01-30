@@ -1,6 +1,4 @@
 const token = localStorage.getItem('token');  
-const nameValue = document.getElementById('name')
-const detailValue = document.getElementById('c')
 const formE1 = document.getElementById('form');
 
 

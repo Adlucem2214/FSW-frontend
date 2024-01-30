@@ -41,10 +41,10 @@ fetch('http://localhost:8000/stock/sales/', {
       // updateLink.textContent = 'Update';
       // actionsCell.appendChild(updateLink);
 
-      const deleteLink = document.createElement('button');
+      // const deleteLink = document.createElement('button');
       // deleteLink.href = `/delete-sale/${sale.code}`; // Replace with the appropriate URL for delete
-      deleteLink.textContent = 'Delete';
-      actionsCell.appendChild(deleteLink);
+      // deleteLink.textContent = 'Delete';
+      // actionsCell.appendChild(deleteLink);
 
       // row.appendChild(actionsCell);
     

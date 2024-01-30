@@ -1,4 +1,9 @@
 const token = localStorage.getItem('token');
+const dropdown = document.getElementById('product-type');
+const supplierDropdown = document.getElementById('Supplier-name');
+const propertyDropdown = document.getElementById('property-name');
+const formE1 = document.getElementById('form');
+
 
 
 fetch('http://localhost:8000/stock/products/', {
@@ -48,10 +53,16 @@ fetch('http://localhost:8000/stock/products/', {
       row.appendChild(propertyCell);
 
       const actionsCell = document.createElement('td');
-      const updateLink = document.createElement('a');
-      updateLink.href = `/update-supplier/${product.code}`; // Replace with the appropriate URL for update
+      const updateLink = document.createElement('button');
+
+      // updateLink.href = `/update-supplier/${product.code}`; // Replace with the appropriate URL for update
       updateLink.textContent = 'Update';
       actionsCell.appendChild(updateLink);
+
+      updateLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        populate(product.id, product.productname, product.quantity, product.price, product.threshold, product.supplier_str , product.product_type_str, product.property_str, row); // Call the deleteSupplier function passing the supplier ID and row element
+       });
 
       const deleteLink = document.createElement('button');
       // deleteLink.href = `http://localhost:8000/stock/products/${product.id}`; // Replace with the appropriate URL for delete
@@ -96,6 +107,179 @@ fetch('http://localhost:8000/stock/products/', {
         console.error('Error deleting supplier:', error);
       });
   }
+
+  //Update Product
+  //Update Product
+  //Update Product
+  fetch('http://localhost:8000/stock/producttypes/', {
+  method: 'GET',
+  headers:{
+    'Content-type': 'application/json',
+    'Authorization': `Token ${token}`,
+  },
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    // Clear existing options
+    dropdown.innerHTML = '';
+
+    // Add the fetched options to the dropdown
+    data.forEach(option => {
+      console.log(option.name)
+      const optionElement = document.createElement('option');
+      optionElement.value = option.id;
+      optionElement.textContent = option.name;
+      dropdown.appendChild(optionElement);
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching product types:', error);
+});
+
+fetch('http://localhost:8000/stock/suppliers/', {
+  method: 'GET',
+  headers:{
+    'Content-type': 'application/json',
+    'Authorization': `Token ${token}`,
+  },
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    // Clear existing options
+    supplierDropdown.innerHTML = '';
+
+    // Add the fetched options to the dropdown
+    data.forEach(option => {
+      console.log(option.name)
+      const optionElement = document.createElement('option');
+      optionElement.value = option.id;
+      optionElement.textContent = option.name;
+      supplierDropdown.appendChild(optionElement);
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching product types:', error);
+});
+
+
+
+// Fetch the properties from your server
+fetch('http://localhost:8000/stock/properties/', {
+  method: 'GET',
+  headers: {
+    'Authorization': `Token ${token}`
+  }
+})
+  .then(response => response.json())
+  .then(data => {
+    console.log(data)
+    // Clear existing options
+    propertyDropdown.innerHTML = '';
+
+    // Add the fetched options to the dropdown
+    data.forEach(option => {
+      const optionElement = document.createElement('option');
+      optionElement.value = option.id
+      optionElement.textContent = option.brand + " " + option.size;
+      propertyDropdown.appendChild(optionElement);
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching properties:', error);
+  });
+
+  const productcode = document.getElementById('updatecode') 
+  const productname = document.getElementById('updatedname') 
+  const productprice = document.getElementById('updatedPrice') 
+  const productquantity  = document.getElementById('updatedQuantity')
+  const productThreshold = document.getElementById('updatedThreshold')
+  const productsupplier = document.getElementById('Supplier-name')
+  const productpropertyDrop = document.getElementById('property-name')
+  const producttypeDrop = document.getElementById('product-type')
+
+  function populate(id, name , quantity, price, threshold, supplier , product_type, productproperty,  row){
+    console.log(id, name,  quantity,price, threshold)
+
+    productcode.value = id;
+    console.log(productsupplier.value)
+    productname.value = name;
+    productprice.value = price;
+    productquantity.value = quantity;
+    productThreshold.value = threshold;
+    // productsupplier.value = supplier;
+    // productpropertyDrop.value = product_type;
+    // producttypeDrop.value = productproperty;
+
+    // productsupplier.value =  supplierDropdown.value;
+    // productpropertyDrop.value = propertyDropdown.value;
+    // producttypeDrop.value = dropdown.value;
+    const productTypeOption = Array.from(dropdown.options).find(option => option.text === product_type);
+  if (productTypeOption) {
+    producttypeDrop.value = productTypeOption.value;
+  }
+
+  // find the option with the matching text in the supplier dropdown and set it as selected
+  const supplierOption = Array.from(supplierDropdown.options).find(option => option.text === supplier);
+  if (supplierOption) {
+    productsupplier.value = supplierOption.value;
+  }
+
+  // find the option with the matching text in the property dropdown and set it as selected
+  const propertyOption = Array.from(propertyDropdown.options).find(option => option.text === productproperty);
+  if (propertyOption) {
+    productproperty.value = propertyOption.value;
+  }
+    
+  }
+  formE1.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const id = productcode.value;
+    const name = productname.value;
+    const price = productprice.value;
+    const quantity = productquantity.value;
+    const threshold = productThreshold.value;
+    const supplier = productsupplier.value;
+    const productproperty = productpropertyDrop.value;
+    const producttype = producttype.value;
+
+    const data = {
+      productname: name,
+      quantity:quantity,
+      price:price,
+      threshold:threshold,
+      supplier:supplier,
+      product_type:producttype,
+      property: productproperty,
+    };
+
+    fetch(`http://localhost:8000/stock/products/${id}/`, {
+      method: 'PATCH',
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Token ${token}`,
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        response.json();
+        if (response.ok) {
+          alert('Product updated successfully!');
+        } else {
+          alert('There was a problem updating the product');
+        }
+      })
+      .then(data => {
+        // Handle the response from the API
+        console.log(data);
+      })
+      .catch(error => console.log(error));
+  });
+
+
+
 
   
 
