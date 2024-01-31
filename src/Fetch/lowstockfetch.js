@@ -95,8 +95,9 @@ fetch('http://localhost:8000/stock/lowstocks/', {
     //   row.appendChild(actionsCell);
     
       tableBody.appendChild(row);
+    })
+    .catch(error => {
+      console.error('Error fetching low stock data:', error);
     });
-  })
-  .catch(error => {
-    console.error('Error fetching supplier data:', error);
-  });
+  
+  
