@@ -139,50 +139,44 @@ function populate(id, name, contact, row) {
       .catch(error => console.log(error));
   });
 
-  const searchInput = document.getElementById('searchInput');
-  const searchButton = document.getElementById('searchButton');
-  const tableBody = document.querySelector('#supplierTable tbody');
+  // const searchInput = document.getElementById('searchInput');
+  // const searchButton = document.getElementById('searchButton');
+  // const tableBody = document.querySelector('#supplierTable tbody');
   
-  // Function to fetch and render the filtered data
-  function fetchAndRenderFilteredData(searchTerm) {
-    const token = localStorage.getItem('token');
-    const url = `http://localhost:8000/stock/suppliers/?search=${encodeURIComponent(searchTerm)}`;
+  // function fetchAndRenderFilteredData(searchTerm) {
+  //   const token = localStorage.getItem('token');
+  //   const url = `http://localhost:8000/stock/suppliers/?search=${encodeURIComponent(searchTerm)}`;
   
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json',
-        'Authorization': `Token ${token}`,
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        renderData(data);
-      })
-      .catch(error => {
-        console.error('Error fetching filtered supplier data:', error);
-      });
-  }
+  //   fetch(url, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //       'Authorization': `Token ${token}`,
+  //     }
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => {
+  //       renderData(data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error fetching filtered supplier data:', error);
+  //     });
+  // }
   
-  // Function to handle search button click
-  function handleSearch() {
-    const searchTerm = searchInput.value.trim();
+  // function handleSearch() {
+  //   const searchTerm = searchInput.value.trim();
   
-    if (searchTerm !== '') {
-      // Fetch and render the filtered data
-      fetchAndRenderFilteredData(searchTerm);
-    } else {
-      // If search term is empty, fetch and render all data
-      fetchAndRenderFilteredData('');
-    }
-  }
+  //   if (searchTerm !== '') {
+  //     fetchAndRenderFilteredData(searchTerm);
+  //   } else {
+  //     fetchAndRenderFilteredData('');
+  //   }
+  // }
   
-  // Add event listener to search button click
-  searchButton.addEventListener('click', handleSearch);
+  // searchButton.addEventListener('click', handleSearch);
   
-  // Add event listener to Enter key press in search input
-  searchInput.addEventListener('keypress', (event) => {
-    if (event.key === 'Enter') {
-      handleSearch();
-    }
-  });
+  // searchInput.addEventListener('keypress', (event) => {
+  //   if (event.key === 'Enter') {
+  //     handleSearch();
+  //   }
+  // });

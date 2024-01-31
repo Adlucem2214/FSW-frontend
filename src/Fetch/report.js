@@ -1,6 +1,14 @@
-
+const token = localStorage.getItem("token");
 function fetchData() {
-  return fetch("http://127.0.0.1:8000/stock/sales/").then((response) =>
+  return fetch("http://127.0.0.1:8000/stock/sales/",
+  {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token},`,
+    },
+}
+  ).then((response) =>
     response.json()
   );
 }
@@ -102,7 +110,13 @@ function downloadTable(version) {
     const apiUrl = 'http://localhost:8000/stock/products/'; // Replace with the actual API endpoint that provides the table data
     const filename = `table_version_${version}.csv`;
   
-    fetch(apiUrl)
+  fetch(apiUrl,{
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Token ${token},`,
+    }}
+  )
       .then(response => response.json())
       .then(data => {
         // Extract table headers

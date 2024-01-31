@@ -62,6 +62,7 @@ fetch('http://localhost:8000/stock/suppliers/', {
 fetch('http://localhost:8000/stock/properties/', {
   method: 'GET',
   headers: {
+    'Content-type': 'application/json',
     'Authorization': `Token ${token}`
   }
 })

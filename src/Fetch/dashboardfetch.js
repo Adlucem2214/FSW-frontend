@@ -1,4 +1,13 @@
-fetch('http://localhost:8000/stock/products/')
+const token = localStorage.getItem('token');
+fetch('http://localhost:8000/stock/products/',
+{
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Token ${token},`,
+  },
+}
+)
     .then(response => response.json())
     .then(data => {
       // Update the product count in the card
@@ -8,7 +17,15 @@ fetch('http://localhost:8000/stock/products/')
       console.error('Error:', error);
     });
 
-    fetch('http://localhost:8000/stock/sales/')
+fetch('http://localhost:8000/stock/sales/',
+{
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Token ${token},`,
+  },
+}
+)
     .then(response => response.json())
     .then(data => {
       // Extract the total_price from each sale and calculate the total sales amount
@@ -20,7 +37,15 @@ fetch('http://localhost:8000/stock/products/')
     .catch(error => {
       console.error('Error:', error);
     });
-    fetch('http://localhost:8000/stock/producttypes/')
+fetch('http://localhost:8000/stock/producttypes/',
+{
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Token ${token},`,
+  },
+}
+)
     .then(response => response.json())
     .then(data => {
       // Get the number of categories
@@ -37,8 +62,19 @@ fetch('http://localhost:8000/stock/products/')
 
         async function fetchTableData() {
             try {
-                const response = await fetch('http://localhost:8000/stock/sales/');
-                const data = await response.json();
+              const response = await fetch('http://localhost:8000/stock/sales/',
+                {
+                  method: 'GET',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token},`,
+                  },
+              });
+              let data = await response.json();
+              
+              data.sort((a, b) => new Date(b.date) - new Date(a.date));
+              
+              data = data.slice(0, 5);
 
                 // Access the table element
                 const salesTable = document.getElementById('sales-table');
@@ -76,6 +112,6 @@ fetch('http://localhost:8000/stock/products/')
                     salesTable.appendChild(newRow);
                 });
             } catch (error) {
-                console.error('Error fetching table data:', error);
+                console.log('Error fetching table data:', error);
             }
         }
