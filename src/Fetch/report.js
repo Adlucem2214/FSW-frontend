@@ -15,6 +15,12 @@ function fetchData() {
 
 function processData(data, dateRange) {
   const currentDate = new Date();
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    throw new Error("Token is missing or empty");
+  }
+
 
   const aggregatedData = {};
 
