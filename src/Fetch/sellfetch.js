@@ -23,9 +23,9 @@ formE1.addEventListener('submit', (event) => {
       
       response.json() 
       if (response.ok) {
-        alert('Product added successfully!');
+        alert('Sell added successfully!');
       }else{
-        alert('There was a problem adding Product')
+        alert('There was a problem adding Sell')
       }
     })
     .then(data => {

@@ -22,6 +22,7 @@ formE1.addEventListener('submit', (event) => {
     .then(response =>{
       response.json()
       if (response.ok) {
+        location.reload()
         alert('Supplier added successfully!');
       }else{
         alert('There was a problem adding Supplier')
