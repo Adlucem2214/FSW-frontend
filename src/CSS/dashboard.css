@@ -209,7 +209,7 @@ header a {
     flex-wrap: wrap;
     max-width: 1200px;
     margin-top: 20px; 
-    margin-left: 130px;
+    margin-left: 170px;
     padding: 0 10px;
     justify-content: space-between;
   }
@@ -246,15 +246,34 @@ header a {
     border-radius: 50%;
     object-fit: cover;
   }
-  #indexid{
-    width:6px;
+  
+  
+  #idprod{
+    width: 150px;
   }
-  #productid{
-    width: 153px;
+  #idsale{
+    width: 150px ;
+  }
+  #idhash{
+    width: 50px;
+  }
+  
+  #iddate{
+    width: 120px;
+  }
+  #indexid{
+    width:50px;
+  }
+  #dateid{
+    width: 120px;
   }
   #salesid{
-    width:153px ;
+    width: 150px ;
   }
+  #productid{
+    width: 150px;
+  }
+  
   
   @media screen and (max-width: 860px) {
     section.services .cards .card {
