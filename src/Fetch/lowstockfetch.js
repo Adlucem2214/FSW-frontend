@@ -12,6 +12,39 @@ fetch('http://localhost:8000/stock/lowstocks/', {
     const tableBody = document.querySelector('#lowstockTable tbody');
 
     data.forEach(low => {
+      if (low.error) {
+        console.error('Error fetching low stock data:', low.error);
+        return; // Skip this iteration if there is an error
+      }
+
+      const row = document.createElement('tr');
+
+      const codeCell = document.createElement('td');
+      codeCell.textContent = low.id;
+      row.appendChild(codeCell);
+
+      const nameCell = document.createElement('td');
+      nameCell.textContent = low.productname;
+      row.appendChild(nameCell);
+
+      const contactCell = document.createElement('td');
+      contactCell.textContent = low.quantity;
+      row.appendChild(contactCell);
+
+      const product_typeCell = document.createElement('td');
+      product_typeCell.textContent = low.product_type_str;
+      row.appendChild(product_typeCell);
+
+      const propertyCell = document.createElement('td');
+      propertyCell.textContent = low.property_str;
+      row.appendChild(propertyCell);
+
+      const thresholdCell = document.createElement('td');
+      thresholdCell.textContent = low.threshold;
+      row.appendChild(thresholdCell);
+
+      tableBody.appendChild(row);
+    });
       const row = document.createElement('tr');
 
       const codeCell = document.createElement('td');

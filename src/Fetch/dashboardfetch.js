@@ -4,7 +4,7 @@ fetch('http://localhost:8000/stock/products/',
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Token ${token},`,
+    'Authorization': `Token ${token}`,
   },
 }
 )
@@ -22,7 +22,7 @@ fetch('http://localhost:8000/stock/sales/',
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Token ${token},`,
+    'Authorization': `Token ${token}`,
   },
 }
 )
@@ -42,7 +42,7 @@ fetch('http://localhost:8000/stock/producttypes/',
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Token ${token},`,
+    'Authorization': `Token ${token}`,
   },
 }
 )
@@ -67,7 +67,7 @@ fetch('http://localhost:8000/stock/producttypes/',
                   method: 'GET',
                   headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Token ${token},`,
+                    'Authorization': `Token ${token}`,
                   },
               });
               let data = await response.json();
@@ -114,4 +114,6 @@ fetch('http://localhost:8000/stock/producttypes/',
             } catch (error) {
                 console.log('Error fetching table data:', error);
             }
-        }
+          }
+      // Add this closing curly brace
+
