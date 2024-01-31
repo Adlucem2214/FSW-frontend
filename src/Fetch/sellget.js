@@ -35,7 +35,7 @@ fetch('http://localhost:8000/stock/sales/', {
       dateCell.textContent = sale.date;
       row.appendChild(dateCell);
 
-      // const actionsCell = document.createElement('td');
+      //! const actionsCell = document.createElement('td');
       // const updateLink = document.createElement('a');
       // updateLink.href = `/update-sale/${sale.code}`; // Replace with the appropriate URL for update
       // updateLink.textContent = 'Update';

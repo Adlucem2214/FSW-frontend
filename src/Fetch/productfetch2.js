@@ -60,6 +60,7 @@ function fetchData(search = '' )
       const propertyCell = document.createElement('td');
       propertyCell.textContent = product.property_str;
       row.appendChild(propertyCell);
+      propertyCell.id= 'propertycell'
 
       const actionsCell = document.createElement('td');
       const updateLink = document.createElement('button');
@@ -67,6 +68,7 @@ function fetchData(search = '' )
       // updateLink.href = `/update-supplier/${product.code}`; // Replace with the appropriate URL for update
       updateLink.textContent = 'Update';
       actionsCell.appendChild(updateLink);
+      updateLink.id = 'updatelink2'
 
       updateLink.addEventListener('click', (event) => {
         event.preventDefault();
@@ -77,15 +79,17 @@ function fetchData(search = '' )
       // deleteLink.href = `http://localhost:8000/stock/products/${product.id}`; // Replace with the appropriate URL for delete
       deleteLink.textContent = 'Delete';
       actionsCell.appendChild(deleteLink);
+      deleteLink.id= 'deletelink2'
 
       deleteLink.addEventListener('click', (event) => {
         event.preventDefault();
         deleteProduct(product.id, row); // Call the deleteSupplier function passing the supplier ID and row element
       });
       actionsCell.appendChild(deleteLink);
+      actionsCell.id= 'actioncell'
 
       row.appendChild(actionsCell);
-    
+                                                                                         
       tableBody.appendChild(row);
     });
   })
@@ -95,8 +99,6 @@ function fetchData(search = '' )
 }
 
 fetchData(search);
-
-
 
   function deleteProduct(productId, row) {
     const token = localStorage.getItem('token');
@@ -280,6 +282,7 @@ fetch('http://localhost:8000/stock/properties/', {
       .then(response => {
         response.json();
         if (response.ok) {
+          location.reload()
           alert('Product updated successfully!');
         } else {
           alert('There was a problem updating the product');

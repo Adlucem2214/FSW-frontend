@@ -34,6 +34,7 @@ fetch('http://localhost:8000/stock/suppliers/', {
       
       updateLink.textContent = 'Update';
       actionsCell.appendChild(updateLink);
+      updateLink.id = 'updatelink';
 
       updateLink.addEventListener('click', (event) => {
         event.preventDefault();
@@ -45,6 +46,7 @@ fetch('http://localhost:8000/stock/suppliers/', {
       // deleteLink.href = `http://localhost:8000/stock/suppliers/${supplier.id}`; // Replace with the appropriate URL for delete
       deleteLink.textContent = 'Delete';
       actionsCell.appendChild(deleteLink);
+      deleteLink.id = 'deletelink'
 
       deleteLink.addEventListener('click', (event) => {
         event.preventDefault();
@@ -52,6 +54,7 @@ fetch('http://localhost:8000/stock/suppliers/', {
       });
 
       actionsCell.appendChild(deleteLink);
+      
 
       row.appendChild(actionsCell);
     
@@ -123,6 +126,7 @@ function populate(id, name, contact, row) {
       .then(response => {
         response.json();
         if (response.ok) {
+          location.reload();
           alert('Supplier updated successfully!');
         } else {
           alert('There was a problem updating Supplier');
