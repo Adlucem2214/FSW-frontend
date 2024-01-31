@@ -246,6 +246,15 @@ header a {
     border-radius: 50%;
     object-fit: cover;
   }
+  #indexid{
+    width:6px;
+  }
+  #productid{
+    width: 153px;
+  }
+  #salesid{
+    width:153px ;
+  }
   
   @media screen and (max-width: 860px) {
     section.services .cards .card {
