@@ -20,11 +20,6 @@ $(document).ready(function() {
     });
     
     submitButton.addEventListener('click', () => {
-      // Handle form submission logic here
-      // You can access the input values using document.getElementById()
-      // For example: const input1Value = document.getElementById('input1').value;
-    
-      // After handling the form submission, hide the popup
       popup.style.display = 'none';
     });
 

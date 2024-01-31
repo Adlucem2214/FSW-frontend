@@ -82,7 +82,7 @@ fetch('http://localhost:8000/stock/lowstocks/', {
 
     //   const actionsCell = document.createElement('td');
     //   const updateLink = document.createElement('a');
-    //   updateLink.href = `/update-supplier/${low.code}`; // Replace with the appropriate URL for update
+    //   updateLink.href = `/update-supplier/${low.code}`; 
     //   updateLink.textContent = 'Update';
     //   actionsCell.appendChild(updateLink);
 

@@ -1,4 +1,3 @@
-// Create a new User as a Client
 const formE1 = document.getElementById('signup-form');
 
 formE1.addEventListener('submit', (event) => {
