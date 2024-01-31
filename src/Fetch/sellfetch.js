@@ -13,25 +13,29 @@ formE1.addEventListener('submit', (event) => {
 
   fetch('http://localhost:8000/stock/sales/', {
     method: 'POST',
-    headers:{
+    headers: {
       'Content-type': 'application/json',
       'Authorization': `Token ${token}`,
     },
     body: JSON.stringify(data)
   })
-    .then(response => {
-      
-      response.json() 
+    .then(response => response.json().then(data => {
       if (response.ok) {
         alert('Sell added successfully!');
-      }else{
-        alert('There was a problem adding Sell')
+        return data;
+      } else {
+        // If there's a problem with the quantity or product, alert the error message
+        let errorMessage;
+        if (data.quantity) {
+          errorMessage = data.quantity;
+        } else if (data.product) {
+          errorMessage = "The product you're trying to sell doesn't exist.";
+        }
+        throw new Error(errorMessage);
       }
-    })
-    .then(data => {
-      // Handle the response from the API
-      console.log(data);
-    })
-    .catch(error => console.log(error));
+    }))
+    .catch(error => {
+      // Display the error message in an alert
+      alert(error.message);
+    });
 });
-
