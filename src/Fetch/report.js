@@ -151,7 +151,6 @@ updateGraph("weekly");
 //         csvLink.click();
 //         document.body.removeChild(csvLink);
   
-//         // Create and download HTML file
 //         const htmlContent = `<table><thead><tr>${headers.map(header => `<th>${header}</th>`).join('')}</tr></thead><tbody>${data.map(row => `<tr>${headers.map(header => `<td>${row[header]}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
 //         const htmlDataUri = 'data:text/html;charset=utf-8,' + encodeURIComponent(htmlContent);
 //         const htmlLink = document.createElement('a');

@@ -1,7 +1,7 @@
 const formE1 = document.getElementById('login-form');
 
 formE1.addEventListener('submit', (event) => {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
   
     const formData = new FormData(formE1);
     const data = Object.fromEntries(formData);
@@ -16,9 +16,9 @@ formE1.addEventListener('submit', (event) => {
     .then(response => {
       if (response.ok) {
         window.location.href = '../src/addproduct.html';
-        return response.json(); // Parse the response JSON
+        return response.json(); 
       }else {
-            // Handle login error
+
             document.getElementById('error-message').textContent = 'Invalid email or password';
             document.getElementById('error-message').style.display = 'block';
       }

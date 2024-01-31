@@ -42,8 +42,8 @@ fetch('http://localhost:8000/stock/sales/', {
       // actionsCell.appendChild(updateLink);
 
       // const deleteLink = document.createElement('button');
-      // deleteLink.href = `/delete-sale/${sale.code}`; // Replace with the appropriate URL for delete
-      // deleteLink.textContent = 'Delete';
+      // deleteLink.href = `/delete-sale/${sale.code}`; 
+            // deleteLink.textContent = 'Delete';
       // actionsCell.appendChild(deleteLink);
 
       // row.appendChild(actionsCell);

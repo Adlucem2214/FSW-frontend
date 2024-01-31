@@ -14,7 +14,7 @@ fetch('http://localhost:8000/stock/lowstocks/', {
     data.forEach(low => {
       if (low.error) {
         console.error('Error fetching low stock data:', low.error);
-        return; // Skip this iteration if there is an error
+        return; 
       }
 
       const row = document.createElement('tr');
@@ -76,7 +76,6 @@ fetch('http://localhost:8000/stock/lowstocks/', {
     //   const combinedCell = document.createElement('td');
     //   combinedCell.textContent = `${low.property.brand} - ${low.property.size}`;
 
-// Append the cell to the row
     // row.appendChild(combinedCell);
 
       
@@ -88,7 +87,7 @@ fetch('http://localhost:8000/stock/lowstocks/', {
     //   actionsCell.appendChild(updateLink);
 
     //   const deleteLink = document.createElement('a');
-    //   deleteLink.href = `/delete-supplier/${low.code}`; // Replace with the appropriate URL for delete
+    //   deleteLink.href = `/delete-supplier/${low.code}`;
     //   deleteLink.textContent = 'Delete';
     //   actionsCell.appendChild(deleteLink);
 

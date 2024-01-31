@@ -14,10 +14,8 @@ fetch('http://localhost:8000/stock/producttypes/', {
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    // Clear existing options
     dropdown.innerHTML = '';
 
-    // Add the fetched options to the dropdown
     data.forEach(option => {
       console.log(option.name)
       const optionElement = document.createElement('option');
@@ -40,10 +38,8 @@ fetch('http://localhost:8000/stock/suppliers/', {
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    // Clear existing options
     supplierDropdown.innerHTML = '';
 
-    // Add the fetched options to the dropdown
     data.forEach(option => {
       console.log(option.name)
       const optionElement = document.createElement('option');
@@ -58,7 +54,6 @@ fetch('http://localhost:8000/stock/suppliers/', {
 
 
 
-// Fetch the properties from your server
 fetch('http://localhost:8000/stock/properties/', {
   method: 'GET',
   headers: {
@@ -69,10 +64,8 @@ fetch('http://localhost:8000/stock/properties/', {
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    // Clear existing options
     propertyDropdown.innerHTML = '';
 
-    // Add the fetched options to the dropdown
     data.forEach(option => {
       const optionElement = document.createElement('option');
       optionElement.value = option.id
@@ -174,7 +167,7 @@ fetch('http://localhost:8000/stock/properties/', {
 // console.log(token)
 
 // formE1.addEventListener('submit', (event) => {
-//   event.preventDefault(); // Prevent the default form submission
+//   event.preventDefault(); 
 
 //   const formData = new FormData(formE1);
 //   const data = Object.fromEntries(formData);
@@ -191,7 +184,6 @@ fetch('http://localhost:8000/stock/properties/', {
 //   })
 //     .then(response => response.json())
 //     .then(data => {
-//       // Handle the response from the API
 //       console.log(data);
 //     })
 //     .catch(error => console.log(error));

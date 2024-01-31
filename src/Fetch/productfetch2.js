@@ -65,7 +65,6 @@ function fetchData(search = '' )
       const actionsCell = document.createElement('td');
       const updateLink = document.createElement('button');
 
-      // updateLink.href = `/update-supplier/${product.code}`; // Replace with the appropriate URL for update
       updateLink.textContent = 'Update';
       actionsCell.appendChild(updateLink);
       updateLink.id = 'updatelink2'
@@ -76,14 +75,13 @@ function fetchData(search = '' )
        });
 
       const deleteLink = document.createElement('button');
-      // deleteLink.href = `http://localhost:8000/stock/products/${product.id}`; // Replace with the appropriate URL for delete
       deleteLink.textContent = 'Delete';
       actionsCell.appendChild(deleteLink);
       deleteLink.id= 'deletelink2'
 
       deleteLink.addEventListener('click', (event) => {
         event.preventDefault();
-        deleteProduct(product.id, row); // Call the deleteSupplier function passing the supplier ID and row element
+        deleteProduct(product.id, row);
       });
       actionsCell.appendChild(deleteLink);
       actionsCell.id= 'actioncell'
@@ -112,8 +110,7 @@ fetchData(search);
     })
       .then(response => {
         if (response.ok) {
-          // Delete the row from the table
-          row.remove();
+                   row.remove();
         } else {
           alert('You can not delete this product, Product is related to Sale')
           throw new Error('Failed to delete the supplier.');
@@ -137,10 +134,8 @@ fetchData(search);
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    // Clear existing options
     dropdown.innerHTML = '';
 
-    // Add the fetched options to the dropdown
     data.forEach(option => {
       console.log(option.name)
       const optionElement = document.createElement('option');
@@ -163,10 +158,10 @@ fetch('http://localhost:8000/stock/suppliers/', {
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    // Clear existing options
+
     supplierDropdown.innerHTML = '';
 
-    // Add the fetched options to the dropdown
+    
     data.forEach(option => {
       console.log(option.name)
       const optionElement = document.createElement('option');
@@ -181,7 +176,6 @@ fetch('http://localhost:8000/stock/suppliers/', {
 
 
 
-// Fetch the properties from your server
 fetch('http://localhost:8000/stock/properties/', {
   method: 'GET',
   headers: {
@@ -191,10 +185,9 @@ fetch('http://localhost:8000/stock/properties/', {
   .then(response => response.json())
   .then(data => {
     console.log(data)
-    // Clear existing options
+  
     propertyDropdown.innerHTML = '';
 
-    // Add the fetched options to the dropdown
     data.forEach(option => {
       const optionElement = document.createElement('option');
       optionElement.value = option.id
@@ -236,13 +229,11 @@ fetch('http://localhost:8000/stock/properties/', {
     producttypeDrop.value = productTypeOption.value;
   }
 
-  // find the option with the matching text in the supplier dropdown and set it as selected
   const supplierOption = Array.from(supplierDropdown.options).find(option => option.text === supplier);
   if (supplierOption) {
     productsupplier.value = supplierOption.value;
   }
 
-  // find the option with the matching text in the property dropdown and set it as selected
   const propertyOption = Array.from(propertyDropdown.options).find(option => option.text === productproperty);
   if (propertyOption) {
     productproperty.value = propertyOption.value;
@@ -289,7 +280,6 @@ fetch('http://localhost:8000/stock/properties/', {
         }
       })
       .then(data => {
-        // Handle the response from the API
         console.log(data);
       })
       .catch(error => console.log(error));

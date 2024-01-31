@@ -4,7 +4,7 @@ const formE1 = document.getElementById('form');
 console.log(token)
 
 formE1.addEventListener('submit', (event) => {
-  event.preventDefault(); // Prevent the default form submission
+  event.preventDefault(); 
 
   const formData = new FormData(formE1);
   const data = Object.fromEntries(formData);
@@ -24,7 +24,7 @@ formE1.addEventListener('submit', (event) => {
         alert('Sell added successfully!');
         return data;
       } else {
-        // If there's a problem with the quantity or product, alert the error message
+
         let errorMessage;
         if (data.quantity) {
           errorMessage = data.quantity;
@@ -35,7 +35,7 @@ formE1.addEventListener('submit', (event) => {
       }
     }))
     .catch(error => {
-      // Display the error message in an alert
+      
       alert(error.message);
     });
 });

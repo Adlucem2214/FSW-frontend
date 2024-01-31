@@ -38,19 +38,19 @@ fetch('http://localhost:8000/stock/suppliers/', {
 
       updateLink.addEventListener('click', (event) => {
         event.preventDefault();
-        populate(supplier.id, supplier.name, supplier.contact_info, row); // Call the deleteSupplier function passing the supplier ID and row element
-       });
+        populate(supplier.id, supplier.name, supplier.contact_info, row);
+      });
         
 
       const deleteLink = document.createElement('button');
-      // deleteLink.href = `http://localhost:8000/stock/suppliers/${supplier.id}`; // Replace with the appropriate URL for delete
+      // deleteLink.href = `http://localhost:8000/stock/suppliers/${supplier.id}`; 
       deleteLink.textContent = 'Delete';
       actionsCell.appendChild(deleteLink);
       deleteLink.id = 'deletelink'
 
       deleteLink.addEventListener('click', (event) => {
         event.preventDefault();
-        deleteSupplier(supplier.id, row); // Call the deleteSupplier function passing the supplier ID and row element
+        deleteSupplier(supplier.id, row);
       });
 
       actionsCell.appendChild(deleteLink);
@@ -77,7 +77,7 @@ fetch('http://localhost:8000/stock/suppliers/', {
     })
       .then(response => {
         if (response.ok) {
-          // Delete the row from the table
+         
           row.remove();
         } else {
           alert ('You can not delete this supplier ,Supplier is related to product')
@@ -133,7 +133,7 @@ function populate(id, name, contact, row) {
         }
       })
       .then(data => {
-        // Handle the response from the API
+        
         console.log(data);
       })
       .catch(error => console.log(error));
