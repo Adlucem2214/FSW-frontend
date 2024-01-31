@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Analysis</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        #controls button {
+          background-color: #4CAF50; /* Green background */
+          border: none; /* Remove border */
+          color: white; /* White text */
+          padding: 15px 32px; /* Some padding */
+          text-align: center; /* Centered text */
+          text-decoration: none; /* Remove underline */
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer; /* Mouse pointer on hover */
+          transition-duration: 0.4s; /* Transition effect */
+          border-radius: 15px;
+        }
+      
+        #controls button:hover {
+          background-color: #09290b; /* Green background on hover */
+          transform: scale(1.1
+          );
+        }
+      </style>
+  </head>
+  <body>
+    <div id="controls">
+      <button onclick="updateGraph('weekly')">Weekly</button>
+      <button onclick="updateGraph('monthly')">Monthly</button>
+      <button onclick="updateGraph('daily')">daily</button>
+    </div>
+    <div id="graph1"></div><br>
+    <div id="graph2"></div>
+
+    <script>
+      function fetchData() {
+        return fetch("http://127.0.0.1:8000/stock/sales/").then((response) =>
+          response.json()
+        );
+      }
+
+      function processData(data, dateRange) {
+        const currentDate = new Date();
+
+        const aggregatedData = {};
+
+        data.forEach((sale) => {
+          const saleDate = new Date(sale.date);
+
+          let startDate;
+          if (dateRange === "weekly") {
+            startDate = new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth(),
+              currentDate.getDate() - 7
+            );
+          } else if (dateRange === "monthly") {
+            startDate = new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth() - 1,
+              currentDate.getDate()
+            );
+          } else if (dateRange === "daily") {
+            startDate = new Date(
+              currentDate.getFullYear(),
+              currentDate.getMonth(),
+              currentDate.getDate() - 1
+            );
+          } else {
+            throw new Error("Invalid date range");
+          }
+
+          if (saleDate >= startDate && saleDate <= currentDate) {
+            if (!aggregatedData[sale.product_str]) {
+              aggregatedData[sale.product_str] = 0;
+            }
+            aggregatedData[sale.product_str] += sale.quantity;
+          }
+        });
+
+        const productIds = Object.keys(aggregatedData);
+        const quantitiesSold = Object.values(aggregatedData);
+
+        const trace1 = {
+          x: productIds,
+          y: quantitiesSold,
+          type: "bar",
+          marker: {
+            color: "skyblue",
+          },
+        };
+
+        const trace2 = {
+          values: quantitiesSold,
+          labels: productIds,
+          type: "pie",
+        };
+
+        console.log(trace2)
+
+
+
+        return [[trace1], [trace2]];
+      }
+
+      function updateGraph(dateRange) {
+        fetchData()
+          .then((data) => {
+            const processedData1 = processData(data, dateRange)[0];
+            const processedData2 = processData(data, dateRange)[1];
+
+            console.log(processedData1);
+
+            
+
+            const graphDiv1 = document.getElementById("graph1");
+            Plotly.newPlot(graphDiv1, processedData1);
+
+            var layout = {
+              height: 1000,
+              width: 1000
+            };
+
+            const graphDiv2 = document.getElementById("graph2");
+            Plotly.newPlot(graphDiv2, processedData2, layout);
+
+
+        
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+          });
+      }
+
+      updateGraph("weekly");
+    </script>
+  </body>
+</html>
